@@ -11,11 +11,12 @@
 #include <limits.h>
 #include <errno.h>
 
-int _execute(char **command, char **argv);
 extern char **environ;
+
+int cmd_execute(char **cmd, char **argv);
 char *read_command(void);
 char *_strdup(const char *jv);
-char **token(char *line);
+char **spliter(char *cmd_line);
 void freeArrayString(char **ar);
 
 #endif

@@ -1,5 +1,11 @@
 #include "shell.h"
-
+/**
+ * main - simple shell unix command line interpreter
+ * @argv: pointer to arguments passed to prg
+ * @argc: number of arguments passed to prg
+ *
+ * Return: exit statut of the shell
+ */
 int main(int argc, char **argv)
 {
 	char *line = NULL;
@@ -9,7 +15,6 @@ int main(int argc, char **argv)
 
 	do {
 		line = read_command();
-		/*stop the program*/
 		if (line == NULL)
 		{
 			if (isatty(STDIN_FILENO))
@@ -17,11 +22,11 @@ int main(int argc, char **argv)
 			return (status);
 		}
 
-		command = token(line);
+		command = spliter(line);
 		if (!command)
 			continue;
 
-		status = _execute(command, argv);
+		status = cmd_execute(command, argv);
 
 
 	} while (1);
