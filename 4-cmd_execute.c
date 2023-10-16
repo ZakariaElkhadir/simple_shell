@@ -23,7 +23,7 @@ int cmd_execute(char **cmd, char **argv, int cmd_id)
 	son = fork();
 	if (son == 0)
 	{
-		if (execve(cmd[0], cmd, environ) == -1)
+		if (execve(cmd_path, cmd, environ) == -1)
 		{
 			freeArrayString(cmd);
 			free(cmd_path);
