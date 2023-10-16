@@ -13,10 +13,20 @@
 
 extern char **environ;
 
-int cmd_execute(char **cmd, char **argv);
+int cmd_execute(char **cmd, char **argv, int cmd_id);
 char *read_command(void);
-char *_strdup(const char *jv);
 char **spliter(char *cmd_line);
+char *get_cmd_path(char *cmd);
+char *_getenv(char *keyvar);
+
 void freeArrayString(char **ar);
+int get_path_len(char *str1, char *str2);
+char *int_converter(int num);
+void error_print(char *shell, char *cmd, int cmd_id);
+
+char *_strdup(const char *jv);
+char *cmd_build(char *full_path, char *path_str, char *cmd_str);
+int _strlen(char *str);
+int _strcomp(char *str1, char *str2);
 
 #endif

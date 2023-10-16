@@ -10,7 +10,7 @@ int main(int argc, char **argv)
 {
 	char *line = NULL;
 	char **command = NULL;
-	int status = 0;
+	int status = 0, cmd_id = 0;
 	(void) argc;
 
 	do {
@@ -21,14 +21,11 @@ int main(int argc, char **argv)
 				write(STDOUT_FILENO, "\n", 2);
 			return (status);
 		}
-
+		cmd_id++;
 		command = spliter(line);
 		if (!command)
 			continue;
-
-		status = cmd_execute(command, argv);
-
-
+		status = cmd_execute(command, argv, cmd_id);
 	} while (1);
 
 }
