@@ -25,7 +25,8 @@ int main(int argc, char **argv)
 		command = spliter(line);
 		if (!command)
 			continue;
-		status = cmd_execute(command, argv, cmd_id);
+		if (builtin_check(command, &status) == 0)
+			status = cmd_execute(command, argv, cmd_id);
 	} while (1);
 
 }

@@ -8,6 +8,7 @@
 char *get_cmd_path(char *cmd)
 {
 	char *cmd_path, *path_var, *path_dir;
+	char delim[] = ":";
 	struct stat buf;
 	int i = 0, len = 0;
 
@@ -27,7 +28,7 @@ char *get_cmd_path(char *cmd)
 	path_var = _getenv("PATH");
 	if (path_var == NULL)
 		return (NULL);
-	path_dir = strtok(path_var, ":");
+	path_dir = strtok(path_var, delim);
 	do {
 		len = get_path_len(cmd, path_dir);
 		cmd_path = malloc(sizeof(char *) * (len + 2));
@@ -40,7 +41,7 @@ char *get_cmd_path(char *cmd)
 				return (cmd_path);
 			}
 			free(cmd_path), cmd_path = NULL;
-			path_dir = strtok(NULL, ":");
+			path_dir = strtok(NULL, delim);
 		}
 	} while (path_dir);
 	free(path_var);
