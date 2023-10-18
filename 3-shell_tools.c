@@ -45,7 +45,7 @@ int get_path_len(char *str1, char *str2)
  * int_converter - convert int to ASCII
  * @num: int to vonvert
  *
- * return: char pointer
+ * Return: char pointer
  */
 char *int_converter(int num)
 {
