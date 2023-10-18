@@ -1,29 +1,39 @@
 #include "shell.h"
-struct builtins bcmd[] = {
-	{"exit", shell_exit},
-	{"env", var_env},
-	{NULL, NULL}
-};
+/**
+ * builtin_check - check builtin cmd
+ * @cmd: pointer to cmd line
+ * @st: exit status
+ *
+ * Return: 1 on sucess or 0
+ */
 int builtin_check(char **cmd, int *st)
 {
-	int i = 0;
+	char *exit_cmd = "exit", *env_cmd = "env";
 
-	while (bcmd[i].bc != NULL)
+	if (_strcomp(cmd[0], exit_cmd) == 0)
+		shell_exit(cmd, st);
+	else if (_strcomp(cmd[0], env_cmd) == 0)
 	{
-		if (_strcomp(cmd[0], bcmd[i].bc) == 0)
-		{
-			bcmd[i].cmd_func(cmd, st);
-			return (1);
-		}
-		i++;
+		var_env(cmd, st);
+		return (1);
 	}
 	return (0);
 }
+/**
+ * shell_exit - exit shell func
+ * @cmd: pointer to cmd
+ * @st: exit status
+ */
 void shell_exit(char **cmd, int *st)
 {
 	freeArrayString(cmd);
 	exit(*st);
 }
+/**
+ * var_env - environ var func
+ * @cmd: pointer to cmd line
+ * @st: exit status
+ */
 void var_env(char **cmd, int *st)
 {
 	int i = 0;

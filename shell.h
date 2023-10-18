@@ -11,17 +11,7 @@
 #include <limits.h>
 #include <errno.h>
 
-
-struct builtins
-{
-	char *bc;
-	void (*cmd_func)(char **cmd, int *st);
-};
-
-
-
 extern char **environ;
-extern struct builtins bcmd[];
 
 int cmd_execute(char **cmd, char **argv, int cmd_id);
 char *read_command(void);
