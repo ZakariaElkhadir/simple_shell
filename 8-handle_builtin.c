@@ -8,11 +8,11 @@
  */
 int builtin_check(char **cmd, int *st)
 {
-	char *exit_cmd = "exit", *env_cmd = "env";
+	char *builtin_cmd[] = {"exit", "env"};
 
-	if (_strcomp(cmd[0], exit_cmd) == 0)
+	if (_strcomp(cmd[0], builtin_cmd[0]) == 0)
 		shell_exit(cmd, st);
-	else if (_strcomp(cmd[0], env_cmd) == 0)
+	else if (_strcomp(cmd[0], builtin_cmd[1]) == 0)
 	{
 		var_env(cmd, st);
 		return (1);

@@ -64,17 +64,19 @@ char *cmd_build(char *full_path, char *path_str, char *cmd_str)
  */
 int _strcomp(char *str1, char *str2)
 {
-	int result = 0, i = 0;
+	int result = 0;
 
-	for (i = 0; str1[i] != '\0' && str2[i] != '\0'; i++)
+	while (*str1 == *str2)
 	{
-		if (str1[i] != str2[i])
+		if (*str1 == '\0' && *str2 == '\0')
 		{
-			result = str1[i] - str2[i];
+			result = 0;
 			return (result);
 		}
-		i++;
+		str1++;
+		str2++;
 	}
+	result = 1;
 	return (result);
 }
 /**
